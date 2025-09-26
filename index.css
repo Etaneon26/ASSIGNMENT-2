@@ -1,0 +1,95 @@
+:root{
+      --bg:#f9f9f9;
+      --card:#cce6ff;
+      --border:#999;
+      --max-w:900px;
+      --gap:12px;
+      --radius:6px;
+    }
+
+    /* Page layout (center the grid using simple margins) */
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      display: block;
+      padding:28px 16px;
+    }
+
+    /* Main grid container */
+    .container{
+      width:100%;
+      max-width:var(--max-w);
+      margin-left:auto;
+      margin-right:auto;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      grid-template-areas:
+        "about about"
+        "hobbies aspirations";
+      gap: var(--gap);
+    }
+
+    /* About (spans both columns) */
+    .about{
+      grid-area: about;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:18px;
+      display:grid;
+      grid-template-columns: 120px 1fr; /* profile image + text */
+      align-items:center; /* centers content within each grid cell vertically */
+      column-gap:18px;
+    }
+
+    .profile-img{
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      object-fit:cover;
+      border:1px solid #666;
+      justify-self:center; /* center image horizontally in its grid cell */
+    }
+
+    .about h2{
+      margin:0 0 8px 0;
+      font-size:20px;
+    }
+    .about p{ margin:0; line-height:1.45; }
+
+    /* Bottom cards */
+    .hobbies{
+      grid-area:hobbies;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:16px;
+    }
+    .aspirations{
+      grid-area:aspirations;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:16px;
+    }
+
+    /* Small screens: stack all sections vertically */
+    @media (max-width:700px){
+      .container{
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        grid-template-areas:
+          "about"
+          "hobbies"
+          "aspirations";
+      }
+      .about{
+        grid-template-columns: 1fr; /* image above text */
+        text-align:center;
+        row-gap:12px;
+      }
+      .profile-img{ justify-self:center; }
+    }
+  
